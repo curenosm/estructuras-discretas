@@ -114,6 +114,4 @@ distanciaPuntos (x1, y1) (x2, y2) = sqrt ((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
   Uso: cuadrados [1..5]
 -}
 cuadrados :: [Int] -> [Int]
-cuadrados [] = []
-cuadrados [x] = [x ^ 2]
-cuadrados (x : xs) = (x ^ 2) : cuadrados xs
+cuadrados input = [x * x | x <- input]
