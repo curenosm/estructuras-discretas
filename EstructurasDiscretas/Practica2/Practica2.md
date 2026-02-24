@@ -26,7 +26,7 @@ estándar que se sigue al desarrollar software utilizandolo.
         identificar si el primero de los bits de derecha a izquierda es igual
         a `1`, pues como esa posición determina la contribución de un $2^0 = 1$
         al número en base decimal, sólo aquellos que tengan $1$ en esta posición
-        van a ser números pares, todas las demás posiciones para los bits $1$
+        van a ser números impares, todas las demás posiciones para los bits $1$
         de un número representan potencias pares de dos.
 
     - ¿Por qué no se puede utilizar el operador lógico `&&`?
