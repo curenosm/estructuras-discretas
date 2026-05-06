@@ -1,5 +1,6 @@
 module Proyecto where
 
+import Auxiliar
 
 {-
   Funcion: obtenerFrecuencias
