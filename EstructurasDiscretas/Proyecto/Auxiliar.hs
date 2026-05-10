@@ -41,6 +41,10 @@ ejemploArbol =
     )
     (Hoja 'A' 5)
 
+ejemploConstruye :: [Arbol Char]
+ejemploConstruye =
+  [Hoja 'A' 5, AB 7 (AB 4 (AB 2 (Hoja 'B' 1) (Hoja 'D' 1)) (AB 2 (Hoja 'K' 1) (Hoja 'H' 1))) (AB 3 (Hoja 'V' 1) (Hoja 'R' 2))]
+
 ejemploFrecuencias :: [(Char, Int)]
 ejemploFrecuencias =
   [ ('B', 1),

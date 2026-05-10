@@ -1,6 +1,7 @@
 module Proyecto where
 
 import Auxiliar
+import GHC.Float (int2Float)
 
 {-
   Funcion: obtenerFrecuencias
@@ -25,3 +26,25 @@ ordenarFrecuencias ((ci, fi) : xs) =
       frecuenciasMayores = [(c, f) | (c, f) <- (ci, fi) : xs, f > fi, ci /= c]
       paresMapeo = ordenarFrecuencias frecuenciasMenores ++ [(ci, fi)] ++ ordenarFrecuencias frecuenciasMayores
    in paresMapeo
+
+{-
+  Funcion: obtenerHojas
+  Descripcion: Nos permite formar las hojas a partir de las cuales construiremos el arbol.
+  Uso: obtenerHojas (obtenerFrecuencias ejemploPalabra)
+-}
+obtenerHojas :: (Eq a) => [(a, Int)] -> [Arbol a]
+obtenerHojas fs = [Hoja c f | (c, f) <- fs]
+
+{-
+  Funcion: sumaPonderada
+  Descripcion: Calcula la suma ponderando la frecuencia de un caracter con la longitud
+    de cada camino a un caracter en el árbol codificado.
+  Uso: sumaPonderada [('a', 1)] [('a', "1")] 1 = 1
+-}
+sumaPonderada :: (Eq a) => [(a, Int)] -> [(a, String)] -> Int -> Float
+sumaPonderada [] _ n = 0
+sumaPonderada _ [] n = 0
+sumaPonderada ((a, fa) : frecuencias) ((b, lb) : longitudes) n =
+  let sumaActual = int2Float (fa * length lb)
+      cur = (sumaActual / int2Float n)
+   in cur + sumaPonderada frecuencias longitudes n
