@@ -37,6 +37,14 @@ testCuenta =
       [ "Correct count of elements for a list" ~: 3 ~=? cuenta [1, 2, 3, 4, 1, 5, 6, 7, 1, 8, 9] 1
       ]
 
+-- Test for obtenerFrecuencias
+
+-- Test for ordenarFrecuencias
+
+-- Test for construyeArbol
+
+-- Test for construye
+
 -- Test for deriving Eq behavior and linting with HUnit in VSCode
 testArbolEquality :: Test
 testArbolEquality =
@@ -44,6 +52,10 @@ testArbolEquality =
     ~: TestList
       [ "Trees should be equal" ~: Hoja 'a' 1 ~=? Hoja 'a' 1
       ]
+
+-- Test for tamanioPromedio
+
+-- Test for CaminosCodificados
 
 -- Test for sumaPonderada
 testSumaPonderada :: Test
@@ -53,6 +65,8 @@ testSumaPonderada =
       [ "Correct weight sum" ~: 1.0 ~=? sumaPonderada [('a', 1)] [('a', "1")] 1,
         "Correct weight sum" ~: (30 / 12) ~=? sumaPonderada ejemploFrecuencias ejemploCaminos 12
       ]
+
+-- Test for decodificaRepresentacion
 
 main :: IO Counts
 main =
