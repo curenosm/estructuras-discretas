@@ -38,12 +38,36 @@ testCuenta =
       ]
 
 -- Test for obtenerFrecuencias
+testObtenerFrecuencias :: Test
+testObtenerFrecuencias =
+  "obtenerFrecuencias"
+    ~: TestList
+      [ "Correct count of letters for word" ~: ejemploFrecuencias ~=? obtenerFrecuencias "AVRAHKADABRA"
+      ]
 
 -- Test for ordenarFrecuencias
+testOrdenarFrecuencias :: Test
+testOrdenarFrecuencias =
+  "ordenarFrecuencias"
+    ~: TestList
+      [ "Correct order of initial frequencies list" ~: [('c', 0), ('b', 1), ('d', 2), ('a', 4)] ~=? ordenarFrecuencias [('a', 4), ('b', 1), ('c', 0), ('d', 2)]
+      ]
 
 -- Test for construyeArbol
+testConstruyeArbol :: Test
+testConstruyeArbol =
+  "construyeArbol"
+    ~: TestList
+      [ "Correct three built according to docs" ~: ejemploArbol ~=? construyeArbol "AVRAHKADABRA"
+      ]
 
 -- Test for construye
+testConstruye :: Test
+testConstruye =
+  "construye"
+    ~: TestList
+      [ "Correct behavior of function to build tree" ~: ejemploConstruye ~=? construye (obtenerHojas (obtenerFrecuencias "AVRAHKADABRA")) []
+      ]
 
 -- Test for deriving Eq behavior and linting with HUnit in VSCode
 testArbolEquality :: Test
@@ -54,8 +78,28 @@ testArbolEquality =
       ]
 
 -- Test for tamanioPromedio
+testTamanioPromedio :: Test
+testTamanioPromedio =
+  "tamanioPromedio"
+    ~: TestList
+      [ "Correct average size" ~: 2.5 ~=? tamanioPromedio ejemploPalabra
+      ]
 
 -- Test for CaminosCodificados
+testCaminosCodificados :: Test
+testCaminosCodificados =
+  "caminosCodificados"
+    ~: TestList
+      [ "Correct result of paths" ~: ejemploCaminos ~=? caminosCodificados ejemploArbol ""
+      ]
+
+-- Test for codifica
+testCodifica :: Test
+testCodifica = 
+  "codifica"
+    ~: TestList
+      [ "Correct result of encoding" ~: ejemploPalabraCodificada ~=? codifica ejemploArbol ejemploPalabra
+      ]
 
 -- Test for sumaPonderada
 testSumaPonderada :: Test
@@ -67,8 +111,37 @@ testSumaPonderada =
       ]
 
 -- Test for decodificaRepresentacion
+testDecodifica :: Test
+testDecodifica =
+  "testDecodifica"
+    ~: TestList
+      [ "Correct decoding of single letter A" ~: "A" ~=? decodifica ejemploArbol "1",
+        "Correct decoding of single letter V" ~: "V" ~=? decodifica ejemploArbol "010",
+        "Correct decoding of single letter R" ~: "R" ~=? decodifica ejemploArbol "011",
+        "Correct decoding of single letter H" ~: "H" ~=? decodifica ejemploArbol "0011",
+        "Correct decoding of single letter K" ~: "K" ~=? decodifica ejemploArbol "0010",
+        "Correct decoding of single letter D" ~: "D" ~=? decodifica ejemploArbol "0001",
+        "Correct decoding of single letter B" ~: "B" ~=? decodifica ejemploArbol "0000",
+        "Correct decoding of two letters AV" ~: "AV" ~=? decodifica ejemploArbol "1010",
+        "Correct decoding of the string" ~: ejemploPalabra ~=? decodifica ejemploArbol ejemploPalabraCodificada
+      ]
 
 main :: IO Counts
 main =
   runTestTT $
-    TestList []
+    TestList
+      [ testConcatenaListas,
+        testContiene,
+        testUnicos,
+        testCuenta,
+        testObtenerFrecuencias,
+        testOrdenarFrecuencias,
+        testConstruyeArbol,
+        testConstruye,
+        testArbolEquality,
+        testTamanioPromedio,
+        testCaminosCodificados,
+        testCodifica,
+        testSumaPonderada,
+        testDecodifica
+      ]
