@@ -1,5 +1,7 @@
 module Auxiliar where
 
+import Data.Char
+
 data Arbol a
   = Vacio
   | Hoja a Int
@@ -69,9 +71,18 @@ ejemploCaminos =
 
 -- Funciones Auxiliares
 
+
 {-
-  Funcion: concatena
-  Descripcion: Concatena todas las listas del primer argumento en una sola.
+  Función: bytes
+  Descripción: Calcula el tamaño en bytes de una cadena usando ASCII/UTF-8 básico
+  Uso: bytes "Hola" = 4
+-}
+bytes :: String -> Int
+bytes = length . map ord
+
+{-
+  Función: concatena
+  Descripción: Concatena todas las listas del primer argumento en una sola.
   Uso: concatena [[1], [2, 3], [4, 5]] = [1, 2, 3, 4, 5]
 -}
 concatena :: [[a]] -> [a]
@@ -79,8 +90,8 @@ concatena [] = []
 concatena listas = [x | l <- listas, x <- l]
 
 {-
-  Funcion: contiene
-  Descripcion: Verifica si una lista contiene al elemento especificado.
+  Función: contiene
+  Descripción: Verifica si una lista contiene al elemento especificado.
   Uso: contiene [1, 2, 3, 4, 5] 4 = True
 -}
 contiene :: (Eq a) => [a] -> a -> Bool
@@ -88,8 +99,8 @@ contiene [] _ = False
 contiene (x : xs) e = (x == e) || contiene xs e
 
 {-
-  Funcion: unicos
-  Descripcion: Devuelve los elementos en una lista, pero sin repeticiones.
+  Función: unicos
+  Descripción: Devuelve los elementos en una lista, pero sin repeticiones.
   Uso: unicos [1, 1, 3, 4, 5, 2, 2] = [1, 3, 4, 5, 2]
 -}
 unicos :: (Eq a) => [a] -> [a]
@@ -99,8 +110,8 @@ unicos (x : xs) = if contiene ultimosUnicos x then ultimosUnicos else x : ultimo
     ultimosUnicos = unicos xs
 
 {-
-  Funcion: cuenta
-  Descripcion: Cuenta las apariciones de un elemento en una lista.
+  Función: cuenta
+  Descripción: Cuenta las apariciones de un elemento en una lista.
   Uso: cuenta [1, 1, 3, 4, 5, 2, 2] 8 = 0
 -}
 cuenta :: (Eq a) => [a] -> a -> Int
